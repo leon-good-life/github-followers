@@ -10,7 +10,6 @@ const FollowersApp = () => {
   useEffect(() => {
     setFollowers(null); // to set the loading indicator while loading
     const getFollowers = async () => {
-      console.log(process.env);
       const octokit = new Octokit({ auth: process.env.REACT_APP_AUTH_KEY });
       await octokit.rest.users.getAuthenticated();
       octokit.rest.users
