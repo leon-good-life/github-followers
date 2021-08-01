@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { Octokit } from "octokit";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { AUTH_KEY } from "./consts";
+import SearchUserForm from "./components/SearchUserForm";
+import FollowersListWithPagination from "./components/FollowersListWithPagination";
 
-function App() {
+const FollowersApp = () => {
+  const [username, setUsername] = useState("leon-good-life");
+  const [followers, setFollowers] = useState([]);
+  useEffect(() => {
+    setFollowers(null); // to set the loading indicator while loading
+    const getFollowers = async () => {
+      const octokit = new Octokit({ auth: AUTH_KEY });
+      await octokit.rest.users.getAuthenticated();
+      octokit.rest.users
+        .listFollowersForUser({
+          username,
+        })
+        .then((response) => setFollowers(response.data));
+    };
+    getFollowers();
+  }, [username]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <SearchUserForm {...{ setUsername, username }} />
+      {followers === null ? (
+        "Loading..."
+      ) : (
+        <FollowersListWithPagination {...{ followers, setUsername }} />
+      )}
     </div>
   );
-}
+};
 
-export default App;
+export default FollowersApp;
