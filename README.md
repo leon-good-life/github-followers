@@ -1,10 +1,10 @@
+# Video of live demo
+
+<https://www.loom.com/share/2c44fb49f7fd48aa842604729ce229c3>
+
 # Live demo
 
 <https://main.d1yim8riwt89h4.amplifyapp.com/>
-
-# Video of live demo
-
-LEON-TODO
 
 # Installation instructions
 
