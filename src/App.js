@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Octokit } from "octokit";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { AUTH_KEY } from "./consts";
 import SearchUserForm from "./components/SearchUserForm";
 import FollowersListWithPagination from "./components/FollowersListWithPagination";
 
@@ -11,7 +10,8 @@ const FollowersApp = () => {
   useEffect(() => {
     setFollowers(null); // to set the loading indicator while loading
     const getFollowers = async () => {
-      const octokit = new Octokit({ auth: AUTH_KEY });
+      console.log(process.env);
+      const octokit = new Octokit({ auth: process.env.REACT_APP_AUTH_KEY });
       await octokit.rest.users.getAuthenticated();
       octokit.rest.users
         .listFollowersForUser({
