@@ -1,9 +1,10 @@
 import { useCallback } from "react";
 import { ItemData } from "./interfaces";
+import "./SimpleListItem.css";
 
 interface SimpleListItemProps {
-    itemData: ItemData;
-    onItemClick: (itemData: ItemData) => void;
+  itemData: ItemData;
+  onItemClick: (itemData: ItemData) => void;
 }
 
 const SimpleListItem = ({ itemData, onItemClick }: SimpleListItemProps) => {
