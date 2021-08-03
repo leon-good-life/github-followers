@@ -1,6 +1,12 @@
 import { useCallback } from "react";
+import { ItemData } from "./interfaces";
 
-const ListItem = ({ itemData, onItemClick }) => {
+interface SimpleListItemProps {
+    itemData: ItemData;
+    onItemClick: (itemData: ItemData) => void;
+}
+
+const SimpleListItem = ({ itemData, onItemClick }: SimpleListItemProps) => {
   const memoizedOnClick = useCallback(() => {
     onItemClick(itemData);
   }, [itemData, onItemClick]);
@@ -15,4 +21,4 @@ const ListItem = ({ itemData, onItemClick }) => {
   );
 };
 
-export default ListItem;
+export default SimpleListItem;

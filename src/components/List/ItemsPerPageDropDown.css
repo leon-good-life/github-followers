@@ -1,0 +1,6 @@
+.items-per-page select {
+  width: 200px;
+}
+.items-per-page label:first-letter {
+  text-transform: capitalize;
+}

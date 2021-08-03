@@ -1,7 +1,17 @@
 import { useCallback } from "react";
 import classNames from "classnames";
 
-const PaginationPage = ({ pageIndex, selectedPageIndex, onPageSelect }) => {
+interface PaginationPageProps {
+  pageIndex: number;
+  selectedPageIndex: number;
+  onPageSelect: (pageIndex: number) => void;
+}
+
+const PaginationPage = ({
+  pageIndex,
+  selectedPageIndex,
+  onPageSelect,
+}: PaginationPageProps) => {
   const memoizedOnClick = useCallback(() => {
     onPageSelect(pageIndex);
   }, [pageIndex, onPageSelect]);
